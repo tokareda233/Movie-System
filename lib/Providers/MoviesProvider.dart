@@ -1,33 +1,36 @@
-import 'package:flutter/foundation.dart';
+
+import 'package:flutter/material.dart';
 import 'package:movie/Models/MovieModel.dart';
 import 'package:movie/Services/MovieService.dart';
 
 class Moviesprovider extends ChangeNotifier {
 
-Moviemodel? moviemodel;
+  Moviemodel? moviemodel;
 
-getMovieProvider()async{
-moviemodel =await Movieservice.GetMoviesService();
-notifyListeners();
-}
+  Future<void> getMovieProvider() async {
+    moviemodel = await Movieservice.GetMoviesService();
+    notifyListeners();
+  }
 
-PostBookingProvider(String CustomerName,int movieId,int seatId)async{
- await Movieservice.PostBookingService(CustomerName, movieId, seatId);
- notifyListeners();
- 
-}
+   PostBookingProvider(String CustomerName, int movieId, int seatId) async {
 
-PutCustomerName(int id,String CustomerName )async{
-await Movieservice.PutCustomerNameService(id, CustomerName);
-notifyListeners();
+    await Movieservice.PostBookingService(CustomerName, movieId, seatId);
 
-}
+    await getMovieProvider();
+  }
 
-DeleteBookingProvider(int id)async{
-await Movieservice.DeleteBookingService(id);
-notifyListeners();
+   PutCustomerName(int id, String CustomerName) async {
 
-}
+    await Movieservice.PutCustomerNameService(
+        id, CustomerName);
 
+    await getMovieProvider();
+  }
 
+   DeleteBookingProvider(int id) async {
+
+    await Movieservice.DeleteBookingService(id);
+
+    await getMovieProvider();
+  }
 }

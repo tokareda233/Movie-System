@@ -38,14 +38,16 @@ class Bookingdetails extends StatelessWidget {
            Card(
             elevation: 3,
             child: ListTile(
+                  
                   leading: Container(
-                    width: 70,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                    child: Image.network(ImageUrl,cacheHeight: 200,fit: BoxFit.fill,)
-                    ),
+                  width: 100,
+                  height: 200,
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                   ),
+                   clipBehavior: Clip.antiAlias,
+                  child: Image.network(ImageUrl,fit: BoxFit.cover,),
+                  ),
                   title: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,10 +98,10 @@ class Bookingdetails extends StatelessWidget {
             ) ,
           ),
 
-         SizedBox(height: 350,),
+         Spacer(),
           ElevatedButton(onPressed: ()async{
-            providerObj.DeleteBookingProvider(bookingId);
-            await providerObj.getMovieProvider();
+            await providerObj.DeleteBookingProvider(bookingId);
+           
             Navigator.pop(context, true);
           }, child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -111,10 +113,10 @@ class Bookingdetails extends StatelessWidget {
           ),
           style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity, 40)),
           ),
-          
-           ElevatedButton(onPressed: (){
-            providerObj.PutCustomerName(bookingId, textController.text);
-            providerObj.getMovieProvider();
+          SizedBox(height: 9,),
+           ElevatedButton(onPressed: ()async{
+           await providerObj.PutCustomerName(bookingId, textController.text);
+            
             Navigator.pop(context);
           }, child: Row(
             mainAxisSize: MainAxisSize.min,

@@ -29,12 +29,11 @@ class Movies extends StatelessWidget {
                onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Moviedetails(
                   ImageUrl:value.moviemodel!.data[index]["poster"],
-                  seats:value.moviemodel!.data[index]["seats"],
                   Title:value.moviemodel!.data[index]["name"] ,
                   showDate:value.moviemodel!.data[index]["showDate"] ,
                   showTime: value.moviemodel!.data[index]["showTime"],
                   movieId: value.moviemodel!.data[index]["id"],
-                  
+                 
                  
                   ),));
                },

@@ -87,21 +87,53 @@ class Bookseat extends StatelessWidget {
             ) ,
           ),
 
-         SizedBox(height: 350,),
-          Row(mainAxisSize: MainAxisSize.min,
-            children: [
-          ElevatedButton(onPressed: (){
-            Navigator.pop(context);
-          }, child: Text("Cancel",style: TextStyle(color: Colors.deepPurpleAccent),)),
-          SizedBox(width: 5,),
-           ElevatedButton(onPressed: ()async{
-           await providerObj.PostBookingProvider(textController.text, movieId, seatId);
-            textController.clear();
-            Navigator.pop(context,true);
-           
-          }, child: Text("Confirm",style: TextStyle(color: Colors.deepPurpleAccent,),),style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 226, 222, 222)),),
-                    
-                    ],)
+         Spacer(),
+
+Row(
+  children: [
+    Expanded(
+      child: OutlinedButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        style: OutlinedButton.styleFrom(
+          minimumSize: Size(double.infinity, 45),
+          side: BorderSide(color: Colors.deepPurpleAccent),
+        ),
+        child: Text(
+          "Cancel",
+          style: TextStyle(color: Colors.deepPurpleAccent),
+        ),
+      ),
+    ),
+
+    SizedBox(width: 12),
+
+    Expanded(
+      child: ElevatedButton(
+        onPressed: () async {
+          await providerObj.PostBookingProvider(
+            textController.text,
+            movieId,
+            seatId,
+          );
+
+          textController.clear();
+          Navigator.pop(context, true);
+        },
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(double.infinity, 45),
+          backgroundColor: Color.fromARGB(255, 226, 222, 222),
+        ),
+        child: Text(
+          "Confirm",
+          style: TextStyle(color: Colors.deepPurpleAccent),
+        ),
+      ),
+    ),
+  ],
+),
+SizedBox(height: 10),
 
          
          

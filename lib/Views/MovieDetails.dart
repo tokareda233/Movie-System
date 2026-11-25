@@ -9,22 +9,28 @@ class Moviedetails extends StatelessWidget {
   String Title;
   String showDate;
   String showTime;
-  List<dynamic>seats;
   int movieId;
-// dynamic movie;
-  Moviedetails({super.key,required this.ImageUrl,required this.Title,required this.showDate,required this.showTime,required this.seats,required this.movieId,});
-//Moviedetails({super.key,required this.movie});
+  
+
+  Moviedetails({super.key,required this.ImageUrl,required this.Title,required this.showDate,required this.showTime,required this.movieId,});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: AppBar(
-      title: Text("Mineccraft",style: TextStyle(color: Colors.white),),
+      title: Text(Title,style: TextStyle(color: Colors.white),),
         centerTitle: true,
         backgroundColor: Colors.deepOrange,
     ),
     body: Consumer<Moviesprovider>(
-      builder: (context, value, child) => 
-       Padding(
+      builder: (context, value, child) { 
+        
+      final movie = value.moviemodel!.data.firstWhere(
+        (element) => element["id"] == movieId
+         );
+
+      final seats = movie["seats"] as List<dynamic>;
+       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
@@ -99,7 +105,8 @@ class Moviedetails extends StatelessWidget {
             )
           ],
         ),
-      ),
+      );
+      }
     ),
 
     );
